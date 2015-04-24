@@ -2,14 +2,7 @@ mysql的别名
 alias mysql=/usr/local/mysql/bin/mysql
 alias mysqladmin=/usr/local/mysql/bin/mysqladmin
 
-root下改密码
-mysqladmin -u root password 123456
 
-以root身份登录mysql
-mysql －u root －p123456
-
-
-database:zhoulu 
 
 //建表加上default charset=utf8，数据表编码为中文
 CREATE TABLE STUDENT  
@@ -25,7 +18,7 @@ insert into <表名> values (value1, value2, ...);
 
 插入语句后面加上set names utf8;
 set names utf8;  
-insert into STUDENT values ('198','陈天佑','男','2011-08-24','98');
+insert into STUDENT values ('198','hahah','男','2018-08-24','98');
 
 
 查询城市和经纬度
