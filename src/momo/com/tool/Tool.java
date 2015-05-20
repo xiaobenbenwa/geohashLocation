@@ -70,17 +70,20 @@ public class Tool {
 	}
 
 	public static String[] splitLine(String line) {
+
 		String[] strs = new String[3];
 		if (line != null) {
 			String[] lines = line.split(",");
 			strs[0] = lines[0].trim();
 			strs[1] = lines[1].trim();
 			strs[2] = lines[2].trim();
-
-		} else {
+		}
+		else {
 			strs[0] = "";
 			strs[1] = "";
+
 			strs[2] = "";
+
 
 		}
 

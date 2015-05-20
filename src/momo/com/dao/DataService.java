@@ -94,7 +94,9 @@ public class DataService {
 				pstmt.setObject(i, para[i - 1]);
 			}
 			pstmt.executeUpdate();
+
 			pstmt = null;
+
 			System.out.println("=======================");
 		} catch (SQLException e) {
 
@@ -132,8 +134,10 @@ public class DataService {
 		try {
 			if (rs != null) {
 				rs.close();
+
 				rs=null;
 				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -141,6 +145,7 @@ public class DataService {
 			try {
 				if (pstmt != null) {
 					pstmt.close();
+
 					pstmt = null;
 					
 				}
@@ -150,8 +155,10 @@ public class DataService {
 				try {
 					if (conn != null) {
 						conn.close();
+
 						conn = null;
 						
+
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();

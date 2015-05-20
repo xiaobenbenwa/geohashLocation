@@ -2,6 +2,7 @@ mysql的别名
 alias mysql=/usr/local/mysql/bin/mysql
 alias mysqladmin=/usr/local/mysql/bin/mysqladmin
 
+
 root下改密码
 mysqladmin -u root password 123456
 
@@ -65,6 +66,7 @@ group by access_event_map['lat'],access_event_map['lng'];
 ADD JAR hdfs://nameservice1/user/hive/warehouse/bin/udfs/mapCount.jar;
 CREATE TEMPORARY FUNCTION udfActiveMapCnt AS 'com.immomo.dm.hive.common.udf.MapCount';
 
+
 //建表加上default charset=utf8，数据表编码为中文
 CREATE TABLE STUDENT  
 (  
@@ -77,11 +79,16 @@ PRIMARY KEY(SNO)
 )default charset=utf8;  
 
 
+
 insert into <表名> values (value1, value2, ...);
 
 插入语句后面加上set names utf8;
 set names utf8;  
+
 insert into STUDENT values ('198','陈天佑','男','2011-08-24','98');
+
+insert into STUDENT values ('198','hahah','男','2018-08-24','98');
+
 
 
 查询城市和经纬度
@@ -106,7 +113,11 @@ where row_number<=200;
 
 **********建地理位置信息表***********************
 
+
 CREATE TABLE location_info_b
+
+CREATE TABLE location_info 
+
 ( 
 geohash CHAR(5),
 lat VARCHAR(255), 
@@ -119,12 +130,17 @@ street VARCHAR(255),
 street_number VARCHAR(255)
  )default charset=utf8;  
  
+
  select count(*) from location_info where city !='';
- 
+
  
  select district,count(distinct loc) from
  (select district,substring(geohash,1,4) as loc from location_info) t1
  group  by district;
 
  ********************** 删除表中全部数据*********************
+
  TRUNCATE TABLE location_info;
+
+ TRUNCATE TABLE location_info;
+

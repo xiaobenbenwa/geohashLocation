@@ -17,7 +17,10 @@ import com.mysql.jdbc.Connection;
 public class LocationService {
 
 	static final String GET_URL = "http://apis.map.qq.com/ws/geocoder/v1/?key=DZSBZ-ZRWAD-M3F4U-PNEQH-FL7V6-CYFPH&location=";
+
 	static final String FILE_PATH = "/Users/zhoulu/Documents/workspace/UserLocation/data/llas";
+
+
 	static final int MAX_LAT = 90;
 	static final int MIN_LAT = -90;
 	static final int MAX_LNG = 180;
@@ -35,7 +38,9 @@ public class LocationService {
 		try {
 
 			while ((line = br.readLine()) != null) {
+
 				String geohash = locser. getGeoCode(line);
+
 				HashMap<String, String> latlng = locser.getLocMap(line);
 				HashMap addMap = locser.getAddPart(line);
 				// insert操作
@@ -47,9 +52,11 @@ public class LocationService {
 				String district = addMap.get("district").toString();
 				String street = addMap.get("street").toString();
 				String street_number = addMap.get("street_number").toString();
+
 				String[] para = {geohash, lat, lng, nation, province, city,
 						district, street, street_number };
 				String tablename = "location_info";
+              
 
 				ds.insert(tablename, para, conn);
 				n++;
@@ -90,12 +97,14 @@ public class LocationService {
 		return geohash;
 
 	}
+
 	
 	public String getGeoCode(String line) {
 		String[] strs = Tool.splitLine(line);
 		return strs[2];
 
 	}
+
 
 	public HashMap<String, Double> getDoubleLocMap(String line) {
 		HashMap<String, Double> locMap = new HashMap<String, Double>();
@@ -126,11 +135,13 @@ public class LocationService {
 		HttpURLConnection connection = Tool.getHttpURLConnection(url);
 		BufferedReader reader = Tool.getHttpGetReader(connection);
 		JSONObject obj = Tool.getJsonObject(reader);
+
        if(obj.getInt("status") == 121){
     	   System.out.println("腾讯地图请求已达上限，停止服务！");
     	   System.exit(-1);
 			
 		}
+
 		if (obj.getInt("status") == 0) {
 
 			JSONObject addObj = Tool.getAddrJsonObject(obj, result,
@@ -147,9 +158,11 @@ public class LocationService {
 			addMap.put("district", district);
 			addMap.put("street", street);
 			addMap.put("street_number", street_number);
+
 		} 
 		
-		else {
+ else {
+
 			addMap.put("nation", "");
 			addMap.put("province", "");
 			addMap.put("city", "");
